@@ -6,25 +6,52 @@
         ),
     ); 
 
+    session_start();
+    $ename = $_SESSION['email'];
+    $ename = substr_replace($ename ,"",-4);
 
     require 'include/db_config.php';
     $db = new Database();
     $conn = $db->getConnection();
 
 
+    $email1 = $email = $_SESSION['email'];
+    $f_name = $_GET['file_name'];
 	if(isset($_GET['file_name']))
     {
         $file_name= $_GET['file_name'];
     }
-	$file_name = $file_name.".pdf";
+
+    $extension = "";
+     $con=mysqli_connect("localhost","root","","secured_cloud");
+// Check connection
+    if (mysqli_connect_errno())
+      {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      }
+
+    $folder_name = $_SESSION['folder_name'];  
+    $sql="SELECT file_extension FROM files where file_name = '$f_name' and user = '$email1' and folder_name = '$folder_name' ";
+
+    if ($result=mysqli_query($con,$sql))
+      {
+      // Fetch one and one row
+      while ($row=mysqli_fetch_row($result))
+        {
+            
+                $extension = $row[0];
+        }
+    }
+
+    echo $extension;
+	$file_name = $file_name.$extension;
 	
     //echo $file_name;
-	$email1 = $email = 'sgmadankar@gmail.com';
     $email = substr_replace($email ,"",-4);
     $noOfFileParts = 21;
     $teamid=$file_name;
 	// $teamid=$_FILES['upfile']['name'];
-    $file_extension = ".pdf";
+    $file_extension = $extension;
     // echo $file_extension;
     $teamid = substr_replace($teamid ,"",-4);
 
@@ -32,7 +59,7 @@
     $name= $teamid;
     $fp1 = fopen('downloads/'.$name.$file_extension, 'a+');
 
-    $f_name = $_GET['file_name'];
+    
 
     $no_of_parts = 0;
     
@@ -53,7 +80,6 @@
             
                 $no_of_parts = $row[0];
         }
-
     }
 
 
@@ -63,8 +89,8 @@
     for($i=0;$i<$no_of_parts;$i++)
     {
         echo 'Looking for part'.$i.'_'.$name;
-        echo 'looking for - https://virat:viratkohli@192.168.43.38/remote.php/dav/files/virat/Documents/part'.$i.'_sgmadankar@gmail_'.$name.'.pdf';
-        $str=file_get_contents('https://virat:viratkohli@192.168.43.38/remote.php/dav/files/virat/Documents/part'.$i.'_sgmadankar@gmail_'.$name.'.pdf', false, stream_context_create($arrContextOptions));
+        echo 'looking for - https://virat:viratkohli@192.168.43.38/remote.php/dav/files/virat/Documents/part'.$i.'_'.$ename.'_'.$name.$extension;
+        $str=file_get_contents('https://virat:viratkohli@192.168.43.38/remote.php/dav/files/virat/Documents/part'.$i.'_'.$ename.'_'.$name.$extension, false, stream_context_create($arrContextOptions));
         // $str="nothing there";
         // if($str=='')
         //     break;

@@ -282,7 +282,7 @@
     </div>
     <div class="row mb-lg-4 center-on-small-only">
       <div class="col-lg-6 col-md-12 mb-r wow fadeInLeft" data-wow-delay=".3s">
-        <div class="col-md-6 float-left"><img class="img-fluid rounded z-depth-1 mb-3" src="img/vaibhav.jpg" alt="team member"/></div>
+        <div class="col-md-6 float-left"><img class="img-fluid rounded z-depth-1 mb-3" src="img/.jpg" alt="team member"/></div>
         <div class="col-md-6 float-right">
           <div class="h4">Vaibhav Thombare</div>
           <h6 class="font-bold blue-grey-text mb-4">Lead Designer</h6>
@@ -290,7 +290,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-12 mb-r wow fadeInRight" data-wow-delay=".3s">
-        <div class="col-md-6 float-left"><img class="img-fluid rounded z-depth-1 mb-3" src="img/shubham.jpg" alt="team member"/></div>
+        <div class="col-md-6 float-left"><img class="img-fluid rounded z-depth-1 mb-3" src="img/.jpg" alt="team member"/></div>
         <div class="col-md-6 float-right">
           <div class="h4">Shubham Madankar</div>
           <h6 class="font-bold blue-grey-text mb-4">Web Developer, Designer</h6>
@@ -300,7 +300,7 @@
     </div>
     <div class="row center-on-small-only">
       <div class="col-lg-6 col-md-12 mb-r wow fadeInLeft" data-wow-delay=".3s">
-        <div class="col-md-6 float-left"><img class="img-fluid rounded z-depth-1 mb-3" src="img/pratik.jpg" alt="team member"/></div>
+        <div class="col-md-6 float-left"><img class="img-fluid rounded z-depth-1 mb-3" src="img/.jpg" alt="team member"/></div>
         <div class="col-md-6 float-right">
           <div class="h4">Pratik Desai</div>
           <h6 class="font-bold blue-grey-text mb-4">?</h6>
@@ -308,7 +308,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-12 mb-r wow fadeInRight" data-wow-delay=".3s">
-        <div class="col-md-6 float-left"><img class="img-fluid rounded z-depth-1 mb-3" src="img/nitin.jpg" alt="team member"/></div>
+        <div class="col-md-6 float-left"><img class="img-fluid rounded z-depth-1 mb-3" src="img/.jpg" alt="team member"/></div>
         <div class="col-md-6 float-right">
           <div class="h4">Dr. Nitin Gavankar</div>
           <h6 class="font-bold blue-grey-text mb-4">Guider</h6>

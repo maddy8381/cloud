@@ -7,8 +7,7 @@
 	$db = new Database();
 	$conn = $db->getConnection();
 	$cnt = 0;
-	$creation_date=11;
-	$folder_size=11;
+	$creation_date = date("Y-m-d") ;
 	$query = "SELECT user FROM folders where user = '$email' and folder_name = '$folder_name' ";
 	$q = $conn->query($query);
 		

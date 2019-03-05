@@ -1,12 +1,16 @@
 <?php
 
 session_start();
-	$folder_name = 'folder 1';
-	$email = 'sgmadankar@gmail.com';
-    $email = substr_replace($email ,"",-4);
+if(isset($_GET['folder_name']))
+    {
+        $folder_name= $_GET['folder_name'];
+    }
+	$folder_name = $_SESSION['folder_name'];
+	$email_abc =$email = $_SESSION['email'];
+     $email = substr_replace($email ,"",-4);
 
 
-	echo $folder_name;
+	//echo $folder_name;
 	$teamid=$_FILES['upfile']['name'];
     $file_extension = substr($teamid, -4);
 
@@ -26,11 +30,35 @@ session_start();
 			fsplit("5AqZSwX321/".$teamid,$conn);
 			$flag=1;
 
-		}else
+		}
+        else
 		{
 			echo "Failed to upload file";
 		}	
-	}else
+	}
+    else if($ext == "jpg"){
+        if (move_uploaded_file($_FILES['upfile']['tmp_name'], "5AqZSwX321/".$teamid)){
+            fsplit("5AqZSwX321/".$teamid,$conn);
+            $flag=1;
+
+        }
+        else
+        {
+            echo "Failed to upload file";
+        }   
+    }
+    else if($ext == "mp3"){
+        if (move_uploaded_file($_FILES['upfile']['tmp_name'], "5AqZSwX321/".$teamid)){
+            fsplit("5AqZSwX321/".$teamid,$conn);
+            $flag=1;
+
+        }
+        else
+        {
+            echo "Failed to upload file";
+        }   
+    }
+    else
 	{
 		echo "<script> alert('ONLY PDF IS ALLOWED');
 		window.location.href='finalSubmisson.php'; </script>";
@@ -41,6 +69,7 @@ session_start();
 		
 	}	
 	}
+
 	// Import the PHP AES Encryption class
     // $target_dir = "uploads/";
     // $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -99,7 +128,7 @@ session_start();
     }
     
     //file-split in php
-    function fsplit($file,$conn,$buffer=1024*10){
+    function fsplit($file,$conn,$buffer=1024*100){
         
         //open file to read
         $file_handle = fopen($file,'r');
@@ -135,10 +164,10 @@ session_start();
         //  $arraylength++;
         // }
         $colcnt=0;
-        global $email, $file_extension;
+        global $email, $file_extension,$email_abc,$folder_name;
         for($i=0;$i<$parts;$i++){
             
-            echo $email.$file_extension;
+            //echo $email.$file_extension;
             $colcnt++;
             //read buffer sized amount from file
             $file_part = fread($file_handle, $buffer);
@@ -162,7 +191,7 @@ session_start();
             sendFragmentToNode("uploads/splits/part$i"."_".$email."_".$file_name."".$file_extension,"192.168.43.38","part$i"."_".$email."_".$file_name."".$file_extension,$buffer,$conn);
             $cur_ptr=($cur_ptr+1)%$arraylength;
         }    
-         $query = "INSERT INTO files(file_name,user,folder_name,noOfFileParts,file_size,file_type,destination_ip,destination_path) values ('$file_name', 'sgmadankar@gmail.com','folder 1',$colcnt,".$file_size.",1,'192.168.43.38','Documents/')";
+         $query = "INSERT INTO files(file_name,file_extension,user,folder_name,noOfFileParts,file_size,file_type,destination_ip,destination_path) values ('$file_name','$file_extension','$email_abc','$folder_name',$colcnt,".$file_size.",1,'192.168.43.38','Documents/')";
           $conn->query($query);  
         //close the main file handle   
         fclose($file_handle);
@@ -197,17 +226,17 @@ session_start();
 		           // curl_setopt($ch, CURLOPT_POSTFIELDS,fread($fileHandle,filesize($filepath)));
 		            curl_setopt($ch, CURLOPT_INFILE, $fileHandle);
 		            curl_setopt($ch, CURLOPT_INFILESIZE, filesize($filepath));
-                    echo $ch;
+                   // echo $ch;
 		            $response = curl_exec($ch);
-                    echo $response;
+                   // echo $response;
 		            if (curl_error($ch)) {
 					    $error_msg = curl_error($ch);
-					    echo $error_msg;
+					 //   echo $error_msg;
 					}
                     else{
-                        echo "Done Successfully";
+                       // echo "Done Successfully";
                     }
-		            echo $response;
+
 
 
 
@@ -233,4 +262,7 @@ session_start();
         return $encrypted;
     }
 
+
+
+echo "<script>alert('File Uploaded Successfully');window.location.href='./index.php'</script>";
 ?>

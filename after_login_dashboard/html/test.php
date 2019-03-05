@@ -1,8 +1,7 @@
 <?php
 
-	$string = 'sgmadankar@gmail.com';
+	$email = 'sgmadankar@gmail.com';
+	$email = substr_replace($email ,"",-4);
 
-	echo substr_replace($string ,"",-4);
-
-
+	echo $email;
 ?>

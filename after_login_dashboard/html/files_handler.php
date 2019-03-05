@@ -1,7 +1,9 @@
 <?php
+$folder_name = "";
     if(isset($_GET['folder_name']))
     {
         $folder_name= $_GET['folder_name'];
+
     }
     else
     {
@@ -13,6 +15,7 @@
 ?>
 <?php
     include_once 'header_after_login_dashboard.php';
+    $_SESSION['folder_name'] = $folder_name;
 
 ?>
 
@@ -83,8 +86,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th style="color:black;">NAME</th>
-                                            <th style="color:black;">SIZE</th>
                                             <th style="color:black;">TYPE</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -106,11 +109,11 @@
                                                         $sno=$sno+1;
 
                                                             
-                                                        echo "<td><i class='glyphicon glyphicon-file'></i> &nbsp;" . $row['file_name'] . "</td>";                                     
-                                                        echo "<td>" . $row['file_size'] . "</td>";
-                                                        echo "<td>" . $row['file_type'] . " MB</td>";
+                                                        echo "<td><i class='glyphicon glyphicon-file'></i> &nbsp;" . $row['file_name'] . "</td>";               
+                                                        echo "<td>".$row['file_extension']."</td>";
                                                         
                                                         echo '<td><a href="download.php?file_name='.$row['file_name'].'"><i class="glyphicon glyphicon-folder-open"></i> &nbsp;&nbsp;Download</a></td>';
+                                                        echo '<td><a href="delete.php?file_name='.$row['file_name'].'"><i class="glyphicon glyphicon-erase"></i> &nbsp;&nbsp;Delete</a></td>';
                                                         echo "</tr>";
                                                      
                                                   }

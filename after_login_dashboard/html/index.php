@@ -109,7 +109,6 @@
                                             <th>#</th>
                                             <th style="color:black;">NAME</th>
                                             <th style="color:black;">DATE MODIFIED</th>
-                                            <th style="color:black;">SIZE</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -132,7 +131,6 @@
                                                         $f_name = $row['folder_name'];    
                                                         echo '<td><a href="files_handler.php?folder_name='.$f_name.'"><i class="glyphicon glyphicon-folder-open"></i> &nbsp;&nbsp; '.$f_name.'</a></td>';                                     
                                                         echo "<td>" . $row['creation_date'] . "</td>";
-                                                        echo "<td>" . $row['folder_size'] . " MB</td>";
                                                         echo "</tr>";
                                                      
                                                   }
